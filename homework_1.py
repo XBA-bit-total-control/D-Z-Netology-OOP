@@ -141,6 +141,12 @@ lecturer_2 = Lecturer("Василий", "Теркин",)
 reviewer_2 = Reviewer("Измаил", "Лаиходжа", )
 student_2 = Student("Константин", "Щегалев", "М")
 
+# Проверка наследования
+print(isinstance(lecturer_1, Mentor)) # True
+print(isinstance(reviewer_1, Mentor)) # True
+print(lecturer_1.courses_attached)    # []
+print(reviewer_1.courses_attached)    # []
+
 # Назначение студентам активных курсов
 student_1.courses_in_progress += ['Python', 'Java']
 lecturer_1.courses_attached += ['Python', 'C++']
@@ -153,6 +159,14 @@ reviewer_2.courses_attached += ['Python']
 # Назначение завершенных курсов
 student_1.finished_courses += ["QA - тестирование"]
 student_2.finished_courses += ["Введение в программирование"]
+
+# Проверка оценивания у студентов
+print("\n", student_1.rate_lecture(lecturer_1, 'Python', 7))  # None
+print(student_1.rate_lecture(lecturer_1, 'Java', 8))  # Ошибка
+print(student_1.rate_lecture(lecturer_1, 'С++', 8))  # Ошибка
+# print(student_1.rate_lecture(reviewer_1, 'Python', 6))  # Ошибка без обработки
+
+print(lecturer_1.grades)  # {'Python': [7]}
 
 # Студенты оценивают
 student_1.rate_lecture(lecturer_1, 'Python', 7.4)
@@ -171,7 +185,7 @@ for i in [student_1, student_2, lecturer_1, lecturer_2]:
     whole_score(i, "Python")
 
 # Работоспособность переопределенного спец.метода __str__
-print(reviewer_1, lecturer_1, student_1, sep="\n\n")
+print("\n", reviewer_1, lecturer_1, student_1, sep="\n\n")
 print("\n", reviewer_2, lecturer_2, student_2, sep="\n\n")
 
 # Проверка работы перегруженных операторов сравнения
