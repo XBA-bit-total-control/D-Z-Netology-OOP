@@ -42,6 +42,7 @@ class Student:
     def __gt__(self, other):
         return f"Средняя оценка {self.name} составляет {self.average_rating} это больше чем у {other.name}" if self.average_rating > other.average_rating else f"Средняя оценка {other.name} составляет {other.average_rating} это больше чем у {self.name}"
 
+
 class Mentor:
     "Родоначальник для последующих классов"
     def __init__(self, name, surname):
@@ -58,6 +59,7 @@ class Mentor:
                 student.grades[course] = [grade]
         else:
             return 'Ошибка'
+
 
 class Lecturer(Mentor):
     def __init__(self, name, surname):
@@ -103,6 +105,7 @@ class Reviewer(Mentor):
                 f" Фамилия: {self.surname}"
                 )
 
+
 # Функция для подсчета средней оценки
 def whole_score(ranked, course):
     """ Для удобного подсчёта средней оценки по курсу
@@ -110,6 +113,7 @@ def whole_score(ranked, course):
     Важно что подсчет средней оценки возможен только после её проставления """
     if course in ranked.grades:
         ranked.average_rating = round(sum(ranked.grades[course]) / len(ranked.grades[course]), 1)
+
 
 # Функция для подсчета средней оценки у студентов по определенному курсу
 def course_total_grade_std(list_students, course):
@@ -121,6 +125,7 @@ def course_total_grade_std(list_students, course):
         continue
     return sum(result) / len(result)
 
+
 # Функция для подсчета средней оценки у лекторов по определенному курсу
 def course_total_grade_lct(list_lectors, course):
     """ Подсчет средней оценки за курс у лекторов
@@ -130,6 +135,7 @@ def course_total_grade_lct(list_lectors, course):
         if course in comrade.courses_attached:
             result.extend(comrade.grades[course])
     return sum(result) / len(result)
+
 
 # Первая тройка объявляется
 lecturer_1 = Lecturer('Тимур', 'Анвартдинов')
@@ -147,11 +153,12 @@ print(isinstance(reviewer_1, Mentor)) # True
 print(lecturer_1.courses_attached)    # []
 print(reviewer_1.courses_attached)    # []
 
-# Назначение студентам активных курсов
+# Назначение активных курсов первой тройке
 student_1.courses_in_progress += ['Python', 'Java']
 lecturer_1.courses_attached += ['Python', 'C++']
 reviewer_1.courses_attached += ['Python', 'C++']
 
+# Назначение активных курсов второй тройке
 student_2.courses_in_progress += ['Python', "Git"]
 lecturer_2.courses_attached += ['Python']
 reviewer_2.courses_attached += ['Python']
@@ -164,9 +171,9 @@ student_2.finished_courses += ["Введение в программирован
 print("\n", student_1.rate_lecture(lecturer_1, 'Python', 7))  # None
 print(student_1.rate_lecture(lecturer_1, 'Java', 8))  # Ошибка
 print(student_1.rate_lecture(lecturer_1, 'С++', 8))  # Ошибка
+print(lecturer_1.grades)  # {'Python': [7]}
 # print(student_1.rate_lecture(reviewer_1, 'Python', 6))  # Ошибка без обработки
 
-print(lecturer_1.grades)  # {'Python': [7]}
 
 # Студенты оценивают
 student_1.rate_lecture(lecturer_1, 'Python', 7.4)
