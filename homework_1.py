@@ -7,7 +7,7 @@ class Student:
         self.finished_courses = []
         self.courses_in_progress = []
         self.grades = {}
-        self.average_rating = [] # Добавлено для упрощения сравнения объектов между собой
+        self.average_rating = []  # Добавлено для упрощения сравнения объектов между собой
 
     def rate_lecture(self, lecturer, course, score):
         "Студен имеет возможность выставлять оценки лекторам"
@@ -169,10 +169,10 @@ student_2.finished_courses += ["Введение в программирован
 
 # Проверка оценивания у студентов
 print("\n", student_1.rate_lecture(lecturer_1, 'Python', 7))  # None
-print(student_1.rate_lecture(lecturer_1, 'Java', 8))  # Ошибка
-print(student_1.rate_lecture(lecturer_1, 'С++', 8))  # Ошибка
+print(student_1.rate_lecture(lecturer_1, 'Java', 8))          # Ошибка
+print(student_1.rate_lecture(lecturer_1, 'С++', 8))           # Ошибка
 print(lecturer_1.grades)  # {'Python': [7]}
-# print(student_1.rate_lecture(reviewer_1, 'Python', 6))  # Ошибка без обработки
+# print(student_1.rate_lecture(reviewer_1, 'Python', 6))                    # Ошибка без обработки
 
 
 # Студенты оценивают
